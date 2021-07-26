@@ -13,6 +13,11 @@ public class TestController {
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
+	@GetMapping("/")
+	public String defaultGreeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+		return "Hello Docker World";
+	}
+
 	@GetMapping("/greeting")
 	public TestService greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new TestService(counter.incrementAndGet(), String.format(template, name));
